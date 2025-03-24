@@ -12,6 +12,7 @@ terraform {
 ```
 
 However, there is no backwards compatibility built-in;
+> See https://github.com/hashicorp/terraform/issues/31355#issuecomment-1172457816
 
 Meaning, if you "upgrade" your Terraform to >= 1.3.0, you also need to **remove** this experiment mode.
 
