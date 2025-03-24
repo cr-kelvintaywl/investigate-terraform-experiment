@@ -12,6 +12,7 @@ jobs:
           - pre_1.3
     docker:
       - image: hashicorp/terraform:<< parameters.tf_version >>
+    resource_class: small
     working_directory: ~/project/<< parameters.folder >>
     steps:
       - checkout:
