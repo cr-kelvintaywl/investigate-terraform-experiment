@@ -1,0 +1,33 @@
+version: '2.1'
+
+jobs:
+  validate:
+    parameters:
+      tf_version:
+        type: string
+      folder:
+        type: enum
+        enum:
+          - post_1.3
+          - pre_1.3
+    docker:
+      - image: hashicorp/terraform:<< parameters.tf_version >>
+    working_directory: ~/project/<< parameters.folder >>
+    steps:
+      - checkout:
+          path: ~/project
+      - run: terraform version
+      - run: terraform validate
+          
+workflows:
+  main:
+    jobs:
+      - validate:
+          matrix:
+            parameters:
+              tf_version:
+                - '1.3.10'
+                - '1.2.7'
+              folder:
+                - post_1.3
+                - pre_1.3
